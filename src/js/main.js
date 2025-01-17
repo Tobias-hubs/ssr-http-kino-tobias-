@@ -7,11 +7,11 @@ import './components/footer.js';
 import './carousel.js';
 
 
-import { fetchMovieData, moviesArray } from './movies.js';
+import { fetchMovieData, moviesArray } from './movies.js'; // Borttaget för server 
 
 export const initializeMovieData = async () => {
   await fetchMovieData(); // Ensure the data is fetched before proceeding
   console.log("Data loaded in main.js:", moviesArray);
 };
 
-export { moviesArray }; // Re-export the array
+export { moviesArray }; // Re-export the array    // Borttaget för server 

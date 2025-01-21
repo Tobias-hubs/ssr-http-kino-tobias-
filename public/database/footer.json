@@ -23,7 +23,7 @@
           { "text": "Kundservice", "url": "#" },
           { "text": "Cookiepolicy", "url": "#" },
           { "text": "Personliguppgiftspolicy", "url": "#" },
-          { "text": "Kontakta oss", "url": "/Group-d-assignment/contact.html" }
+          { "text": "Kontakta oss", "url": "/static/contact.html" }
         ]
       },
       {

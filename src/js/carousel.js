@@ -28,7 +28,7 @@ buttons.forEach(button => {
 // Function to fetch movie data and populate the carousel
 const populateCarousel = async () => {
   try {
-    const response = await fetch('/Group-d-assignment/database/movies.json');
+    const response = await fetch('/static/database/movies.json');
     const jsonData = await response.json();
     console.log('Movies jsonData fetched:', jsonData.movies);
 

@@ -510,7 +510,8 @@
 
 
 
-////////////////////////////////////////////
+
+//////////////////////////////////////////// med denna nedan fungerar nya API och endast del av header styling
 
 import express from 'express';
 import axios from 'axios';
@@ -521,18 +522,42 @@ import markdownIt from 'markdown-it';
 const app = express();
 const port = 5080;
 
-// Try if this preventing new api to load
-// Middleware to remove old path "/Group-d-assignment/" from all incoming routes
-app.use((req, res, next) => {
-  if (req.url.includes('/Group-d-assignment/')) {
-    req.url = req.url.replace('/Group-d-assignment/', '/');
-  }
-  next();
-});
-
 // Fetch actual file path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Serve static files from dist folder (Vite build)
+app.use('/static', express.static(path.join(__dirname, 'dist'))); // This needs to be here for API route to render first
+console.log('Server started and route is ready.');
+
+app.use('/static/database', express.static(path.join(__dirname, 'dist/database')));
+
+// Assets Viktig för nu fungerar http://localhost:5080/static/contact.html med (mer) innehåll
+app.use('/assets', express.static(path.join(__dirname, 'dist', 'assets')));
+
+
+// COMBINED RE DIRECTION
+// Try if this preventing new api to load
+// Middleware to remove old path "/Group-d-assignment/" from all incoming routes
+
+// app.use((req, res, next) => {
+//   console.log(`Original URL: ${req.url}`); 
+//   if (req.url.includes('/Group-d-assignment/')) {
+//     req.url = req.url.replace('/Group-d-assignment/', '/');
+//     console.log(`Modified URL: ${req.url}`);
+//   } 
+//   next();
+// });
+
+
+////////////////////
+//Middleware to add static for incoming paths that need it 
+// app.use((req, res, next) => { 
+//   if(!req.url.startsWith('/static') && !req.url.startsWith('/api')) { 
+//     req.url = `/static${req.url}`;
+//   }
+//   next();
+// });
 
 //////////////
 // app.get('/test-api', async (req, res) => {
@@ -548,13 +573,14 @@ const __dirname = path.dirname(__filename);
 //////////////////
 
 
+
+
 // EJS as template engine 
 app.set('view engine', 'ejs'); 
 app.set('views', path.join(__dirname, 'views')); 
 
-// Serve static files from dist folder (Vite build)
-// app.use(express.static(path.join(__dirname, 'dist')));
-console.log('Server started and route is ready.');
+
+
 // Fetch movies from API and pass them to EJS view
 app.get('/', async (req, res) => {
   try {
@@ -564,6 +590,7 @@ app.get('/', async (req, res) => {
 
     console.log('API Response:', movies); // Logga ut svaret
     console.log('Is Array:', Array.isArray(movies)); // Kolla om det är en array
+
   
     // Pass the movies data to EJS for rendering
     res.render('index', { movies: movies.data });
@@ -614,7 +641,169 @@ app.get('/cafe', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'cafe.html'));
 });
 
+
 // Start server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+
+
+/////////////////////////////////////////// Med denna nedan fungerar original innehåll men inte api
+
+// import express from 'express';
+// import axios from 'axios';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+// import markdownIt from 'markdown-it';
+
+// const app = express();
+// const port = 5080;
+
+// // Hämta faktisk filväg för att använda __dirname
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// // 1. Middleware för att hantera omdirigering av sökvägar
+// app.use((req, res, next) => {
+//   if (req.url.includes('/Group-d-assignment/')) {
+//     req.url = req.url.replace('/Group-d-assignment/', '/');
+//     console.log(`Rewriting URL: ${req.url}`);
+//   }
+//   next();
+// });
+
+// // 2. Middleware för att servera statiska filer från "dist"
+// app.use(express.static(path.join(__dirname, 'dist')));
+
+// // 3. Ställ in EJS som mallmotor
+// app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+
+// // 4. Rutter
+
+// // Hämta och rendera alla filmer
+// app.get('/', async (req, res) => {
+//   try {
+//     const response = await axios.get('https://plankton-app-xhkom.ondigitalocean.app/api/movies');
+//     const movies = response.data.data;
+
+//     res.render('index', { movies });
+//   } catch (error) {
+//     console.error('Error fetching movies:', error.message, error.response?.data || error);
+//     res.status(500).send('Error fetching movies');
+//   }
+// });
+
+// // Hämta och rendera en enskild film
+// app.get('/movie/:id', async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const response = await axios.get(`https://plankton-app-xhkom.ondigitalocean.app/api/movies/${id}`);
+//     const movieData = response.data.data;
+//     const attributes = movieData.attributes;
+
+//     // Rendera introduktion som Markdown
+//     const md = new markdownIt();
+//     const introHtml = md.render(attributes.intro);
+
+//     res.render('movie', { movie: attributes, introHtml });
+//   } catch (error) {
+//     console.error('Error fetching movie:', error.message);
+//     res.status(404).render('error', { message: 'Movie not found' });
+//   }
+// });
+
+// // Servera specifika HTML-sidor
+// app.get('/about', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'about.html'));
+// });
+
+// app.get('/contact', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'contact.html'));
+// });
+
+// app.get('/cafe', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'cafe.html'));
+// });
+
+// // 5. Hantera felaktiga rutter (404-sidor)
+// app.use((req, res) => {
+//   res.status(404).render('error', { message: 'Page not found' });
+// });
+
+// // 6. Starta servern
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
+
+
+
+
+
+
+//////////////////// För att ta bort json hämtning
+
+// import express from 'express';
+// import axios from 'axios';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+// import markdownIt from 'markdown-it';
+
+// const app = express();
+// const port = 5080;
+
+// // Hämta faktisk filväg för att använda __dirname
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// // Middleware för att servera statiska filer från "dist"
+// app.use(express.static(path.join(__dirname, 'dist')));
+
+// // Ställ in EJS som mallmotor
+// app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+
+// // Rutter
+
+// // Hämta och rendera alla filmer
+// app.get('/', async (req, res) => {
+//   try {
+//     const response = await axios.get('https://plankton-app-xhkom.ondigitalocean.app/api/movies');
+//     const movies = response.data.data; // Hämta alla filmer från API
+
+//     res.render('index', { movies }); // Skicka filmerna till index.ejs
+//   } catch (error) {
+//     console.error('Error fetching movies:', error.message, error.response?.data || error);
+//     res.status(500).send('Error fetching movies');
+//   }
+// });
+
+// // Hämta och rendera en enskild film
+// app.get('/movie/:id', async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const response = await axios.get(`https://plankton-app-xhkom.ondigitalocean.app/api/movies/${id}`);
+//     const movieData = response.data.data;
+//     const attributes = movieData.attributes;
+
+//     // Rendera introduktion som Markdown
+//     const md = new markdownIt();
+//     const introHtml = md.render(attributes.intro);
+
+//     res.render('movie', { movie: attributes, introHtml });
+//   } catch (error) {
+//     console.error('Error fetching movie:', error.message);
+//     res.status(404).render('error', { message: 'Movie not found' });
+//   }
+// });
+
+// // 404-sida
+// app.use((req, res) => {
+//   res.status(404).render('error', { message: 'Page not found' });
+// });
+
+// // Starta servern
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });

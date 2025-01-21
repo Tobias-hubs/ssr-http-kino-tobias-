@@ -22,7 +22,7 @@ export const createLogo = ()=> {
 
   const headerImage = document.createElement("img");
   headerImage.classList.add("header__image");
-  headerImage.src = "/Group-d-assignment/images/popcorn.png";
+  headerImage.src = "/static/images/popcorn.png";
   headerImage.alt = "popcorn bio";
   headerImage.width = "400";
   stripeContainer.appendChild(headerImage);

@@ -2,7 +2,7 @@ import "../styles/nav.scss";
 
 export async function loadNavbar() {
   try {
-    const response = await fetch("/Group-d-assignment/database/nav.json");
+    const response = await fetch("/static/database/nav.json");
     if (!response.ok) {
       throw new Error("Something went wrong");
     }
@@ -30,7 +30,7 @@ export async function loadNavbar() {
 
     const navButton = document.createElement("img");
     navButton.classList.add("nav__button");
-    navButton.src = "/images/sliders/hamburger.png"; // /Group-d-assignment/public
+    navButton.src = "/static/images/sliders/hamburger.png"; // /Group-d-assignment/public
     navButton.alt = "button for navbar";
 
     document.querySelector(".header__container").prepend(navButton);

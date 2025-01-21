@@ -1,11 +1,39 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie List</title>
+   <title>Retro - biografen som visar filmer från förr -</title> 
+  <meta
+    name="description"
+    content="Retro biografen ligger i västerås och visar filmer från förr"
+  />
+  <meta
+    name="keywords"
+    content="Biograf,retro, 50-tal, 70-tal, 80-tal, 90-tal, 00-tal, Västerås"
+  />
+  <meta name="robots" content="index, follow" />
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <script type="module" crossorigin src="/static/assets/main-WdatQNq3.js"></script>
+  <link rel="modulepreload" crossorigin href="/static/assets/header-BQz6H8vs.js">
+  <link rel="modulepreload" crossorigin href="/static/assets/languageToggleBtn-CJhW3R8M.js">
+  <link rel="modulepreload" crossorigin href="/static/assets/aboutUs-KfxnGE0p.js">
+  <link rel="stylesheet" crossorigin href="/static/assets/header-BfYZ9aHk.css">
+  <link rel="stylesheet" crossorigin href="/static/assets/aboutUs-BAnimolJ.css">
+  <link rel="stylesheet" crossorigin href="/static/assets/languageToggleBtn-Cq9ijXSs.css">
+  <link rel="stylesheet" crossorigin href="/static/assets/main-DKubGrik.css">
+
 </head>
 <body>
+  <header class="header">
+    <div class="header__container"></div>
+  </header>
   <h1>Movie List</h1>
   <ul>
     <% movies.forEach(movie => { %>
@@ -16,7 +44,128 @@
       </li>
     <% }) %>
   </ul>
-  
+  <footer class="footer"></footer>
+</body>
+</html> -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro - biografen som visar filmer från förr -</title> 
+  <meta
+    name="description"
+    content="Retro biografen ligger i Västerås och visar filmer från förr"
+  />
+  <meta
+    name="keywords"
+    content="Biograf, retro, 50-tal, 70-tal, 80-tal, 90-tal, 00-tal, Västerås"
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <!-- <script type="module" crossorigin src="/static/assets/main-WdatQNq3.js"></script>
+  <link rel="modulepreload" crossorigin href="/static/assets/header-BQz6H8vs.js">
+  <link rel="modulepreload" crossorigin href="/static/assets/languageToggleBtn-CJhW3R8M.js">
+  <link rel="modulepreload" crossorigin href="/static/assets/aboutUs-KfxnGE0p.js">
+  <link rel="stylesheet" crossorigin href="/static/assets/header-BfYZ9aHk.css">
+  <link rel="stylesheet" crossorigin href="/static/assets/aboutUs-BAnimolJ.css">
+  <link rel="stylesheet" crossorigin href="/static/assets/languageToggleBtn-Cq9ijXSs.css">
+  <link rel="stylesheet" crossorigin href="/static/assets/main-DKubGrik.css"> -->
+  <!-- <script type="module" crossorigin src="/assets/main-B3mtKTQ5.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/header-Cp_Nn2BB.js">
+    <link rel="modulepreload" crossorigin href="/assets/languageToggleBtn-CJhW3R8M.js">
+    <link rel="modulepreload" crossorigin href="/assets/aboutUs-BluLCvHc.js">
+    <link rel="stylesheet" crossorigin href="/assets/header-BfYZ9aHk.css">
+    <link rel="stylesheet" crossorigin href="/assets/aboutUs-BAnimolJ.css">
+    <link rel="stylesheet" crossorigin href="/assets/languageToggleBtn-Cq9ijXSs.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-DKubGrik.css"> -->
+    <!-- <script type="module" crossorigin src="/assets/main-CIkOOF-q.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/header-D3uMKXAI.js">
+    <link rel="modulepreload" crossorigin href="/assets/languageToggleBtn-CJhW3R8M.js">
+    <link rel="modulepreload" crossorigin href="/assets/aboutUs-CFy0QT91.js">
+    <link rel="stylesheet" crossorigin href="/assets/header-BfYZ9aHk.css">
+    <link rel="stylesheet" crossorigin href="/assets/aboutUs-BAnimolJ.css">
+    <link rel="stylesheet" crossorigin href="/assets/languageToggleBtn-Cq9ijXSs.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-DKubGrik.css"> -->
+    <script type="module" crossorigin src="/assets/main-BRYNhG11.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/header-D3uMKXAI.js">
+    <link rel="modulepreload" crossorigin href="/assets/languageToggleBtn-CJhW3R8M.js">
+    <link rel="modulepreload" crossorigin href="/assets/aboutUs-CFy0QT91.js">
+    <link rel="stylesheet" crossorigin href="/assets/header-BfYZ9aHk.css">
+    <link rel="stylesheet" crossorigin href="/assets/aboutUs-BAnimolJ.css">
+    <link rel="stylesheet" crossorigin href="/assets/languageToggleBtn-Cq9ijXSs.css">
+    <link rel="stylesheet" crossorigin href="/assets/main-DKubGrik.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__container"></div>
+  </header>
+
+  <!-- Befintligt innehåll -->
+  <section>
+    <h1>Movie List</h1>
+    <ul>
+      <% movies.forEach(movie => { %>
+        <li>
+          <a href="/movie/<%= movie.id %>">
+            <h2><%= movie.attributes.title %></h2>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+
+   <!-- Karusell topcontent -->
+   <section class="newest">
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+      </div>
+      <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+      <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+    </div>
+  </section>
+
+
+  <!-- Filmer som visas nu -->
+  <section class="ongoingMoviesSection" id="ongoingMoviesSection">
+    <h2 class="ongoingMoviesSection__header">Filmer som visas nu</h2>
+    <div class="ongoingMovies"></div>
+  </section>
+
+  <!-- Karusell bottomcontent -->
+  <section class="carusell2">
+
+  </section>
+
+  <!-- Kommande filmer -->
+  <section class="upcomingMoviesSection">
+    <h2 class="upcomingMoviesSection__header">Filmer som kommer</h2>
+    <div class="upcomingMovies"></div>
+  </section>
+
+
+  <section class="gift-section">
+    <h2 class="gift-section__header">BIOGÅVA</h2>
+    <div class="gift-section__img-container">
+      <img class="gift-section__gift-image" src="./static/images/popcorn.png"/>
+      <p class="gift-section__gift-text">
+        Ge bort en bioupplevelse till någon du bryr dig om!
+      </p>
+    </div>
+    <button class="gift-section__gift-button">Köp en gåva</button>
+  </section>
+
+  <footer class="footer"></footer>
 </body>
 </html>
+
+
 

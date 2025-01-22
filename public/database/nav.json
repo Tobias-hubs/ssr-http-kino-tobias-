@@ -2,7 +2,7 @@
     "NavItems": {
         "en":[
             
-               { "name":"Start", "href":"/static/index.html"},
+               { "name":"Start", "href":"/"},
                { "name":"Movies", "href":"#2"},
                { "name":"Dining", "href":"/static/cafe.html"},
                { "name":"About us", "href":"/static/about.html"},
@@ -14,7 +14,7 @@
             
         ],
         "sv":[
-            {"name":"Start","href":"/static/index.html" },
+            {"name":"Start","href":"/" },
             {"name":"Filmer","href":"#2" },
             {"name":"Servering","href":"/static/cafe.html" },
             {"name":"Om oss","href":"/static/about.html" },

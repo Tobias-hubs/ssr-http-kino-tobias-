@@ -71,7 +71,7 @@ const loadMenuItems = async (menu, language) => {
   setupScrollAnimation('li');
 };
 const loadCafeMenu = async (language) => {
-  const data = await fetchData('/Group-d-assignment//database/cafeMenu.json');
+  const data = await fetchData('/static//database/cafeMenu.json');
 
   if (data && data.menu) {
     loadMenuItems(data.menu, language);

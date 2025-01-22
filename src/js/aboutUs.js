@@ -17,7 +17,7 @@ const aboutUsContainer = document.querySelector('#about-us-container');
 const loadAboutUsItems = async (language) => {
   aboutUsContainer.innerHTML = '';
   
-  const data = await fetchData('/Group-d-assignment/database/aboutUs.json');
+  const data = await fetchData('/static/database/aboutUs.json');
   
   if (!data || !data.aboutUs || !data.aboutUs[language]) {
     console.error('Invalid data or language not found');

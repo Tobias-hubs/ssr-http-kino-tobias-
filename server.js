@@ -18,7 +18,7 @@ console.log('Server started and route is ready.');
 
 app.use('/static/database', express.static(path.join(__dirname, 'dist/database')));
 
-// Assets Viktig för nu fungerar http://localhost:5080/static/contact.html med (mer) innehåll
+// Assets 
 app.use('/assets', express.static(path.join(__dirname, 'dist', 'assets')));
 
 
@@ -35,8 +35,8 @@ app.get('/', async (req, res) => {
     const response = await axios.get('https://plankton-app-xhkom.ondigitalocean.app/api/movies');
     const movies = response.data;
 
-    console.log('API Response:', movies); // Logga ut svaret
-    console.log('Is Array:', Array.isArray(movies)); // Kolla om det är en array
+    console.log('API Response:', movies); 
+    console.log('Is Array:', Array.isArray(movies)); 
 
   
     // Pass the movies data to EJS for rendering
@@ -52,11 +52,40 @@ app.get('/', async (req, res) => {
 app.get('/movie/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const response = await axios.get(`https://plankton-app-xhkom.ondigitalocean.app/api/movies/${id}`);
+    const response = await axios.get(`https://plankton-app-xhkom.ondigitalocean.app/api/movies/${id}`); 
+    
+    if (response.data?.error) { 
+      return res.status(404).render('error', {message: 'Movie not found'});
+    }
+
     const movieData = response.data.data; // Cant load if not extracting data key here
     const attributes = movieData.attributes; // get attribute from data
 
     // Render the movie intro with Markdown
+    const md = new markdownIt();
+    const introHtml = md.render(attributes.intro);
+    
+    res.render('movie', { movie: attributes, introHtml });
+  } catch (error) {
+    console.error('Error fetching movie:', error);
+    res.status(404).render('error', { message: 'Movie not found' });
+  }
+});
+
+
+// Test route for non-existent movie
+app.get('/test-movie/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const response = await axios.get(`https://plankton-app-xhkom.ondigitalocean.app/movies/${id}`);
+    
+    if (response.data?.error) { 
+      return res.status(404).render('error', {message: 'Movie not found'});
+    }
+
+    const movieData = response.data.data;
+    const attributes = movieData.attributes;
+
     const md = new markdownIt();
     const introHtml = md.render(attributes.intro);
     

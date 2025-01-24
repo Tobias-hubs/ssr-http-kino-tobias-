@@ -121,24 +121,6 @@ app.get('*', (req, res) => {
 });
 
 
-
-//Handle all requests and send the correct HTML file from dist
-// app.get('/about', (req, res) => {
-//   console.log('Serving about.html');
-//   res.sendFile(path.join(__dirname, 'dist', 'about.html'));
-// });
-
-// app.get('/contact', (req, res) => {
-//   console.log('Serving contact.html');
-//   res.sendFile(path.join(__dirname, 'dist', 'contact.html'));
-// });
-
-// app.get('/cafe', (req, res) => {
-//   console.log('Serving cafe.html');
-//   res.sendFile(path.join(__dirname, 'dist', 'cafe.html'));
-// });
-
-
 // Start server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

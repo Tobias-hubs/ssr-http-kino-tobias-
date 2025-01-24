@@ -4,9 +4,9 @@
             
                { "name":"Start", "href":"/"},
                { "name":"Movies", "href":"#2"},
-               { "name":"Dining", "href":"/static/cafe.html"},
-               { "name":"About us", "href":"/static/about.html"},
-               { "name":"Contact", "href":"/static/contact.html"},
+               { "name":"Dining", "href":"/page-cafe"},
+               { "name":"About us", "href":"/page-about"}, 
+               { "name":"Contact", "href":"/page-contact"}, 
                { "name":"Open hours", "href":"#6"}
                
              
@@ -16,9 +16,9 @@
         "sv":[
             {"name":"Start","href":"/" },
             {"name":"Filmer","href":"#2" },
-            {"name":"Servering","href":"/static/cafe.html" },
-            {"name":"Om oss","href":"/static/about.html" },
-            {"name":"Kontakt","href":"/static/contact.html" },
+            {"name":"Servering","href":"/page-cafe" },
+            {"name":"Om oss","href":"/page-about" },
+            {"name":"Kontakt","href":"/page-contact" },
             {"name":"Öppettider","href":"#6" }
             
         ]

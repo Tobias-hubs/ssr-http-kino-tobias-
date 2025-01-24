@@ -12,6 +12,9 @@ const port = 5080;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
+
+
 // Serve static files from dist folder (Vite build)
 app.use('/static', express.static(path.join(__dirname, 'dist'))); // This needs to be here for API route to render first
 console.log('Server started and route is ready.');
@@ -22,10 +25,26 @@ app.use('/static/database', express.static(path.join(__dirname, 'dist/database')
 app.use('/assets', express.static(path.join(__dirname, 'dist', 'assets')));
 
 
+app.use('/database', express.static(path.join(__dirname, 'dist/database')));
+
+
 // EJS as template engine 
 app.set('view engine', 'ejs'); 
 app.set('views', path.join(__dirname, 'views')); 
 
+
+app.get('/page-contact', (req,  res) => { 
+  res.render('contact');
+});
+
+app.get('/page-about', (req, res) => { 
+  res.render('about');
+});
+
+
+app.get('/page-cafe', (req, res) => { 
+  res.render('cafe');
+});
 
 
 // Fetch movies from API and pass them to EJS view
@@ -101,21 +120,23 @@ app.get('*', (req, res) => {
   res.status(404).render('error', { message: 'Page not found' });
 });
 
-// Handle all requests and send the correct HTML file from dist
-app.get('/about', (req, res) => {
-  console.log('Serving about.html');
-  res.sendFile(path.join(__dirname, 'dist', 'about.html'));
-});
 
-app.get('/contact', (req, res) => {
-  console.log('Serving contact.html');
-  res.sendFile(path.join(__dirname, 'dist', 'contact.html'));
-});
 
-app.get('/cafe', (req, res) => {
-  console.log('Serving cafe.html');
-  res.sendFile(path.join(__dirname, 'dist', 'cafe.html'));
-});
+//Handle all requests and send the correct HTML file from dist
+// app.get('/about', (req, res) => {
+//   console.log('Serving about.html');
+//   res.sendFile(path.join(__dirname, 'dist', 'about.html'));
+// });
+
+// app.get('/contact', (req, res) => {
+//   console.log('Serving contact.html');
+//   res.sendFile(path.join(__dirname, 'dist', 'contact.html'));
+// });
+
+// app.get('/cafe', (req, res) => {
+//   console.log('Serving cafe.html');
+//   res.sendFile(path.join(__dirname, 'dist', 'cafe.html'));
+// });
 
 
 // Start server
